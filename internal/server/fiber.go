@@ -10,6 +10,12 @@ import (
 	"fmt"
 	"log"
 
+	coreLocation "boilerplate/internal/core/location"
+	coreDepartment "boilerplate/internal/core/department"
+	corePositions "boilerplate/internal/core/position"
+	coreEmployee "boilerplate/internal/core/employee"
+	coreAttendance "boilerplate/internal/core/attendance"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html"
 	"github.com/sirupsen/logrus"
@@ -50,12 +56,18 @@ func Run(conf *config.Config, dbList *db.DatabaseList, appLoger *logrus.Logger) 
 	app.Get("/", handler.General.Root.GetRoot)
 
 	//* Api Endpoint
-	//api := app.Group(conf.App.Endpoint)
+	api := app.Group(conf.App.Endpoint)
 
 	//* General Routes
 	//generalEncyrption.NewRoutes(api, handler)
 
 	//* Core Routes
+	coreLocation.NewRoutes(api, handler)
+	coreDepartment.NewRoutes(api, handler)
+	corePositions.NewRoutes(api, handler)
+	coreEmployee.NewRoutes(api, handler)
+	coreAttendance.NewRoutes(api, handler)
+
 
 	//* CMS Routes
 	// cmsWorkOfType.NewRoutes(api, handler)
