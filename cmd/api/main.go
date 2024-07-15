@@ -11,7 +11,7 @@ func main() {
 
 	//* ====================== Config ======================
 
-	conf := config.InitConfig("dev")
+	conf := config.InitConfig("local")
 
 	//* ====================== Logger ======================
 
